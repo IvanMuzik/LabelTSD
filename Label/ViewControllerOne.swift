@@ -7,23 +7,29 @@
 
 import UIKit
 
-class ViewControllerOne: UIViewController, UIPickerViewDataSource {
+class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    
-
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var pickerColorTextOutlet: UIPickerView!
     @IBOutlet weak var pickerLinesTextOutlet: UIPickerView!
-    
-    
     @IBOutlet weak var sliderOutlet: UISlider!
     
+    
+        // пересмотреть урок Label
+        // создать кол-во строк в lable что бы можно было выбирать в пикере
+        // создать тени для текста
+        // создать перенос текста
+    
+    
+    var colorText: [UIColor] = [.white, .blue, .yellow, .green, .red, .black] // возможно нужно изменить данные массива цветов
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         pickerColorTextOutlet.dataSource = self
+        pickerColorTextOutlet.delegate = self
+        pickerLinesTextOutlet.delegate = self
         pickerLinesTextOutlet.dataSource = self
         
     }
@@ -67,5 +73,11 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 4
     }
+    
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return colorText[row]
+//    } добавить цыета текста в пикер
+    
+        
 }
 
