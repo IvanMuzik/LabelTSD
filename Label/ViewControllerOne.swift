@@ -15,25 +15,28 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
     @IBOutlet weak var sliderOutlet: UISlider!
     
     
-        // пересмотреть урок Label
-        // создать кол-во строк в lable что бы можно было выбирать в пикере
-        // создать тени для текста
-        // создать перенос текста
+    // создать тени для текста
+    // создать перенос текста
     
+    var colorText = [("white", UIColor.white),
+                    ("blue", UIColor.blue),
+                    ("yellow", UIColor.yellow),
+                    ("green", UIColor.green),
+                    ("red", UIColor.red),
+                    ("black", UIColor.black)]
     
-    var colorText: [UIColor] = [.white, .blue, .yellow, .green, .red, .black] // возможно нужно изменить данные массива цветов
-    
+    var numOfLines = [0, 1, 2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         pickerColorTextOutlet.dataSource = self
         pickerColorTextOutlet.delegate = self
         pickerLinesTextOutlet.delegate = self
         pickerLinesTextOutlet.dataSource = self
         
     }
-
+    
     @IBAction func sliderAction(_ sender: UISlider) {
         sender.minimumValue = 8
         sender.maximumValue = 60
@@ -54,10 +57,8 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
         } )
         alert.addAction(action)
         alert.addTextField ()
-        
         present(alert, animated: true)
-        
-    
+
     }
     
     @IBAction func swichShadowText(_ sender: UISwitch) {
@@ -71,13 +72,20 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 4
+        if pickerView == pickerLinesTextOutlet {
+            return numOfLines.count
+        } else {
+            return colorText.count
+        }
+        
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return colorText[row]
-//    } добавить цыета текста в пикер
-    
-        
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == pickerLinesTextOutlet{
+            return String(numOfLines[row])
+        }else {
+            return colorText[row].0
+        }
+        // добавить дидсет пикер
+    }
 }
-
