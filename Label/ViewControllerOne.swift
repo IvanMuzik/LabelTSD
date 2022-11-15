@@ -87,5 +87,7 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
             return colorText[row].0
         }
         // добавить дидсет пикер
+        // разобраться что он делает
+        
     }
 }
