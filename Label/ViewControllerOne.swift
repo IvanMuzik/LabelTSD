@@ -30,6 +30,7 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         pickerColorTextOutlet.dataSource = self
         pickerColorTextOutlet.delegate = self
         pickerLinesTextOutlet.delegate = self
@@ -65,6 +66,12 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     @IBAction func swichLineBreak(_ sender: UISwitch) {
+        if sender.isOn{
+            self.label.lineBreakMode = .byWordWrapping
+            self.label.numberOfLines = 0
+            self.label.adjustsFontSizeToFitWidth = true
+            self.label.sizeToFit()
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
