@@ -63,13 +63,20 @@ class ViewControllerOne: UIViewController, UIPickerViewDataSource, UIPickerViewD
     }
     
     @IBAction func swichShadowText(_ sender: UISwitch) {
+        if sender.isOn{
+            label.shadowOffset = .init(width: 2, height: 2)
+            label.shadowColor = .gray
+        } else {
+            label.shadowOffset = .zero
+        }
     }
     
     @IBAction func swichLineBreak(_ sender: UISwitch) {
         if sender.isOn{
-            self.label.lineBreakMode = .byWordWrapping
-            self.label.numberOfLines = 0
+            
+            
             self.label.adjustsFontSizeToFitWidth = true
+            self.label.lineBreakMode = .byWordWrapping
             self.label.sizeToFit()
         }
     }
